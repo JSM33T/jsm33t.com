@@ -3,7 +3,7 @@
                     
                   
                     <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
-                        <a href="#top"><img src="/resources/images/j_logo_black.svg" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
+                        <a href="#top"><img src="/resources/images/logos/j_logo_black.svg" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
                     </div>
                  
                     <div class="footer-social-links mb-110 mb-xs-60">

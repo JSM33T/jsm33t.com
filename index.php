@@ -1,6 +1,6 @@
 <?php
    $title = "JSM33T";
-   $description = "JSM33T | Just a website";
+   $description = "JSM33T | Personal website";
    $logo = "white";
    $home = ' href="/" onClick="return false;" class="active" ';
    $logo_visibility = " d-sm-block d-lg-block d-lg-block";
@@ -88,13 +88,10 @@
          </div>
       </div>
    </section>
-   <!-- End Call Action Section -->
-   <!-- Portfolio Section -->
+
    <section class="page-section bg-light-alfa-90 parallax-9" data-background="/resources/images/home.jpg" id="about">
       <div class="container relative">
-         <!-- Works Grid -->
          <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white" id="work-grid">
-            <!-- Work Item (Lightbox) -->
             <li class="work-item mix wow fadeInLeft" data-wow-delay="0.3s">
                <a href="/music" class="work-ext-link">
                   <div class="work-img rcorner10">
@@ -108,8 +105,7 @@
                   </div>
                </a>
             </li>
-            <!-- End Work Item -->
-            <!-- Work Item (Lightbox) -->
+
             <li class="work-item mix wow fadeInLeft" data-wow-delay="0.2s">
                <a href="/repository" class="work-ext-link">
                   <div class="work-img rcorner10">
@@ -178,7 +174,7 @@
          </ul>
       </div>
    </section>
-       <!-- End Menu Section -->
+     
 <?php
    $path = $_SERVER['DOCUMENT_ROOT'] . "/database/testimonials.xml";
    $xmlfile = file_get_contents($path);
@@ -220,8 +216,6 @@
             }
          }       
       ?>
-                    
-  
    </section>
 </main>
       

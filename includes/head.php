@@ -44,7 +44,7 @@
         <div class="page" id="top">
         <?php if(!isset($logo_visibility)) { $logo_visibility = 'd-none d-md-block d-lg-block';} ?>
             <div class="fm-logo-wrap local-scroll <?php echo $logo_visibility ?>">
-                <a href="/" class="logo"><img src="/resources/images/j_logo_<?php echo $logo ?>.svg" width="152" height="54" alt="" /></a>
+                <a href="/" class="logo"><img src="/resources/images/logos/j_logo_<?php echo $logo ?>.svg" width="152" height="54" alt="" /></a>
             </div>
             <a href="#" class="fm-button"><span></span>Menu</a>
             <div class="fm-wrapper" id="fullscreen-menu">
