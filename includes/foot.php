@@ -21,12 +21,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Top Link -->
                 <div class="local-scroll">
                      <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i></a>
                 </div>
-                <!-- End Top Link -->
-                 
             </footer>
             
             <svg class="cursor" width="150" height="150" viewBox="0 0 220 220">
@@ -81,7 +78,9 @@
         <script type="text/javascript" src="/resources/js/jquery.lazyload.min.js"></script>
         <script type="text/javascript" src="/resources/js/all.js"></script>
         <script type="text/javascript" src="/resources/js/contact-form.js"></script>
-        <script>var loc=window.location.href+"";0==loc.indexOf("http://")&&(window.location.href=loc.replace("http://","https://"))</script>
+        <script>
+            var loc=window.location.href+"";0==loc.indexOf("http://")&&(window.location.href=loc.replace("http://","https://"))
+        </script>
         <!-- <script type="text/javascript" src="/resources/js/jquery.ajaxchimp.min.js"></script>        -->
         <!--[if lt IE 10]><script type="text/javascript" src="/resources/js/placeholder.js"></script><![endif]-->
         

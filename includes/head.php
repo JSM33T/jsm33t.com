@@ -22,7 +22,9 @@
         <link rel="stylesheet" href="/resources/css/magnific-popup.css">
         <style>
            
-            }
+
+           <?php if(!isset($filters)){ $filters = 'failed';} ?>
+<?php echo "html{". $filters ."}"?>
            
 
         </style>

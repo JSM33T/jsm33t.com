@@ -4,8 +4,10 @@
    $logo = "white";
    $home = ' href="/" onClick="return false;" class="active" ';
    $logo_visibility = " d-sm-block d-lg-block d-lg-block";
+   $filters = " brightness(80%) grayscale(100%) sepia(70%)";
    include $_SERVER['DOCUMENT_ROOT'] . "/includes/head.php";
 ?>      
+
 
 <main id="main" >
    <section class="home-section bg-dark-alfa-70 parallax-2" data-background="/resources/images/home.jpg" id="home">
@@ -95,7 +97,7 @@
             <li class="work-item mix wow fadeInLeft" data-wow-delay="0.3s">
                <a href="/music" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/music.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/music.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Music</h3>
@@ -109,7 +111,7 @@
             <li class="work-item mix wow fadeInLeft" data-wow-delay="0.2s">
                <a href="/repository" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/repository.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/repository.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Repository</h3>
@@ -122,7 +124,7 @@
             <li class="work-item mix music wow fadeInLeft" data-wow-delay="0.1s">
                <a href="#" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/playlists.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/playlists.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Playlists</h3>
@@ -135,7 +137,7 @@
             <li class="work-item mix mobile wow fadeInRight" data-wow-delay="0.1s">
                <a href="/retro" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/retro.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/retro.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Retro</h3>
@@ -148,7 +150,7 @@
             <li class="work-item mix mobile wow fadeInRight" data-wow-delay="0.2s">
                <a href="/gallery" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/gallery.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/gallery.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Gallery</h3>
@@ -161,7 +163,7 @@
             <li class="work-item mix mobile wow fadeInRight" data-wow-delay="0.3s">
                <a href="/blogs" onClick="return false;" class="work-ext-link">
                   <div class="work-img rcorner10">
-                     <img src="/resources/images/home_thumbs/gallery.jpg" alt="Work" />
+                     <img src="/resources/images/home/home_thumbs/gallery.jpg" alt="Work" />
                   </div>
                   <div class="work-intro">
                      <h3 class="work-title">Blog</h3>
