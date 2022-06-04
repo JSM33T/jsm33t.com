@@ -1,7 +1,7 @@
         <footer class="page-section bg-dark footer pb-60">
         <div class="container">
             <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
-                <a href="#top"><img src="/resources/images/j_logo_white.svg" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
+                <a href="#top"><img src="/resources/images/logos/j_logo_white.svg" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
             </div>
             <div class="footer-social-links-black mb-110 mb-xs-60">
                 <a href="https://instagram.com/jsm33t" title="Instagram" target="_blank"><i class="fa fa-instagram" style="color:grey"></i></a>
