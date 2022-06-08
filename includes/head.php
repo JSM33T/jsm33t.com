@@ -21,12 +21,13 @@
         <link rel="stylesheet" href="/resources/css/owl.carousel.css">
         <link rel="stylesheet" href="/resources/css/magnific-popup.css">
         <style>
-           
-
-           <?php if(!isset($filters)){ $filters = 'failed';} ?>
+<?php 
+    if(!isset($filters))
+    { 
+        $filters = 'failed';
+    }
+?>
 <?php echo "html{". $filters ."}"?>
-           
-
         </style>
         <script>
      
@@ -53,15 +54,13 @@
                 <div class="fm-wrapper-sub">
                     <div class="fm-wrapper-sub-sub">
 
-<?php 
-
-    if(!isset($home)) { $home = 'href="/" ';}
-    if(!isset($music)){ $music = 'href ="/music"' ;}
-    if(!isset($gallery)){ $gallery = 'href="/gallery"';}
-    if(!isset($repo)){ $repo = 'href="/repository"';}
-    if(!isset($me)){ $me = 'href ="/me"' ;}
-
-?>
+        <?php 
+            if(!isset($home)) { $home = 'href="/" ';}
+            if(!isset($music)){ $music = 'href ="/music"' ;}
+            if(!isset($gallery)){ $gallery = 'href="/gallery"';}
+            if(!isset($repo)){ $repo = 'href="/repository"';}
+            if(!isset($me)){ $me = 'href ="/me"' ;}
+        ?>
 
                         <ul class="fm-menu-links local-scroll">
                             <li>  <a <?php echo $home?> >Home</a>       </li>

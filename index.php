@@ -21,10 +21,10 @@
                </div>
                <h2 class="hs-line-14 ind_14 font-alt mb-50 mb-xs-0">
                   <span class="text-rotate">
-                  soundtracks,
-                  Codes,
-                  Archives,
-                  People
+                     soundtracks,
+                     Codes,
+                     Archives,
+                     People
                   </span>
                </h2>
                <span class="d-lg-none d-md-none d-lg-inline-block"><br></span>
@@ -183,10 +183,8 @@
    $new = simplexml_load_string($xmlfile);
    $con = json_encode($new);
    $json = json_decode($con, true);  
-?>            
-                
+?>              
    <section class="page-section bg-dark bg-dark-alfa-90 fullwidth-slider" data-background="/resources/images/home.jpgt">       
-
       <?php
       foreach($json as $elem)  
       {
@@ -208,7 +206,8 @@
                               </p>
                               <footer class="testimonial-author">
                               <?php  echo $elem[0]['content'][$x]['author']; ?>
-                              </footer>
+                           <?php echo "<img src='resources/images/testimonials/". $elem[0]['content'][$x]['image'] .".jpg' class='rcorner100' width='150px'><br><br>" ; ?>
+                           </footer>
                         </blockquote>
                      </div>
                   </div>
