@@ -67,6 +67,12 @@ blockquote .olive{
         border-radius: 10px;
     }
 
+    .rcorner_round
+    {
+        border-radius: 100px;
+    }
+
+
     .ind_14
     {
         text-indent: 0.35em;

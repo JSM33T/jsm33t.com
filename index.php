@@ -192,30 +192,34 @@
          {  
          ?>
             <div>
-            <div class="container relative">
-                  <div class="row">
-                     <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 align-center">
-                        <!-- Section Icon -->
-                        <div class="section-icon">
-                              <span class="icon-quote"></span>
-                        </div>
-                        <!-- Section Title --><h3 class="small-title font-alt">What people say?</h3>
-                        <blockquote class="testimonial white">
-                              <p>
-                              <?php  echo $elem[0]['content'][$x]['title']; ?>
-                              </p>
+               <div class="container relative">
+                     <div class="row">
+                        <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 align-center">
+                           <!-- Section Icon -->
+                           <div class="section-icon">
+                                 <span class="icon-quote"></span>
+                           </div>
+                           <!-- Section Title --><h3 class="small-title font-alt">What people say?</h3>
+                           <blockquote class="testimonial white">
+                                 <p>
+                                 <?php  echo $elem[0]['content'][$x]['title']; ?>
+                                 </p>
                               <footer class="testimonial-author">
-                              <?php  echo $elem[0]['content'][$x]['author']; ?>
-                           <?php echo "<img src='resources/images/testimonials/". $elem[0]['content'][$x]['image'] .".jpg' class='rcorner100' width='150px'><br><br>" ; ?>
-                           </footer>
-                        </blockquote>
+                                 <?php  
+                                    echo $elem[0]['content'][$x]['author']; 
+                                 ?>
+                                 <?php 
+                                    echo "<br><br><img src='resources/images/testimonials/". $elem[0]['content'][$x]['image'] .".jpg' class='rcorner_round' width='140px'><br>" ; 
+                                 ?>
+                              </footer>
+                           </blockquote>
+                        </div>
                      </div>
-                  </div>
+               </div>
             </div>
-         </div>
          <?php
-            }
-         }       
+         }
+      }       
       ?>
    </section>
 </main>
