@@ -117,14 +117,26 @@ $_SESSION["s_mode"] = $mode;
                             
                             <a href="https://github.com/jsm33t" title="Behance" target="_blank"><i class="fa fa-github"></i></a>
                            <?php 
-                           if($_SESSION["s_mode"] == "night")
-                           {
-                            $stat = "day";
-                           }
-                           if($_SESSION["s_mode"] == "day")
+                          
+
+                           if(!isset($_SESSION["s_mode"]))
                            {
                             $stat = "night";
                            }
+                           else
+                           {
+                            if($_SESSION["s_mode"] == "night")
+                            {
+                             $stat = "day";
+                            }
+                          
+                            if($_SESSION["s_mode"] == "day")
+                            {
+                             $stat = "night";
+                            }
+                           }
+                          
+                         
                            ?>
                             <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?')."?mode=".$stat; ?>" title="Spotify" ><i class="fa  fa-lightbulb-o" ></i></a> 
                         </div>
