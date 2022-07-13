@@ -14,9 +14,6 @@ $mode = $_GET["mode"];
 $_SESSION["s_mode"] = $mode;
 }
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
