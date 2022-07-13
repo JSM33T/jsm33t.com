@@ -5,12 +5,13 @@
                     <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
                         <a href="#top"><img src="/resources/images/logos/j_logo_black.svg" width="78" height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the page</span></a>
                     </div>
-                 
+                    <?php echo $_SESSION["s_mode"] ;?>
                     <div class="footer-social-links mb-110 mb-xs-60">
                      <a href="https://instagram.com/jsm33t" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
                      <a href="https://youtube.com/jsm33tmusic" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
                      <a href="https://soundcloud.com/jsm33t" title="SoundCloud" target="_blank"><i class="fa fa-soundcloud"></i></a>
                      <a href="https://open.spotify.com/artist/1y5ovVm8Z5QNKv3NSeQla5" title="Spotify" target="_blank"><i class="fa fa-spotify"></i></a> 
+                     
                     </div>
                     <div class="footer-text">
                         <div class="footer-copy font-alt">

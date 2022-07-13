@@ -1,3 +1,23 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+
+
+if (!isset($_GET["mode"]))
+{
+    $mode = "day";
+}
+else
+{
+$mode = $_GET["mode"];
+$_SESSION["s_mode"] = $mode;
+}
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,17 +41,19 @@
         <link rel="stylesheet" href="/resources/css/owl.carousel.css">
         <link rel="stylesheet" href="/resources/css/magnific-popup.css">
         <style>
-<?php 
-    if(!isset($filters))
-    { 
-        $filters = 'failed';
-    }
+<?php
+  if($_SESSION["s_mode"] == "night")
+  {
+    echo " html{filter:brightness(80%) grayscale(100%) sepia(70%);}" ;  
+  }
+  else
+  {
+    echo " html{filter:brightness(100%);}" ;  
+  }
+  
 ?>
-<?php echo "html{". $filters ."}"?>
         </style>
-        <script>
-     
-        </script>
+
     </head>
   
     <body class="appear-animate">
@@ -63,6 +85,7 @@
         ?>
 
                         <ul class="fm-menu-links local-scroll">
+                        
                             <li>  <a <?php echo $home?> >Home</a>       </li>
                             <li>  <a <?php echo $music?> >Music</a>     </li>
                             <li>  <a <?php echo $gallery?> >GALLERY</a> </li>
@@ -90,13 +113,20 @@
                         </ul>
                         
                         <!--My Social Handles -->
-                        <div
-                         class="fm-social-links">
-                            <a href="https://facebook.com/jsm33t" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>    
-                            <a href="https://instagram.com/jsm33t" title="Behance" target="_blank"><i class="fa fa-instagram"></i></a>
-                            <a href="https://youtube.com/jsm33tmusic" title="Youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="https://soundcloud.com/jsm33t" title="SoundCloud" target="_blank"><i class="fa fa-soundcloud"></i></a>
-                            <a href="https://open.spotify.com/artist/1y5ovVm8Z5QNKv3NSeQla5" title="Spotify" target="_blank"><i class="fa fa-spotify"></i></a> 
+                        <div class="fm-social-links offset-4 col-md-4 col-sm-12" style="background: beige;border-radius:20px;">
+                            
+                            <a href="https://github.com/jsm33t" title="Behance" target="_blank"><i class="fa fa-github"></i></a>
+                           <?php 
+                           if($_SESSION["s_mode"] == "night")
+                           {
+                            $stat = "day";
+                           }
+                           if($_SESSION["s_mode"] == "day")
+                           {
+                            $stat = "night";
+                           }
+                           ?>
+                            <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?')."?mode=".$stat; ?>" title="Spotify" ><i class="fa  fa-lightbulb-o" ></i></a> 
                         </div>
                     </div>
                 </div>

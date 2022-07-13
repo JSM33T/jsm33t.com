@@ -4,7 +4,7 @@
    $logo = "white";
    $home = ' href="/" onClick="return false;" class="active" ';
    $logo_visibility = " d-sm-block d-lg-block d-lg-block";
-   $filters = " brightness(80%) grayscale(100%) sepia(70%)";
+   $filters = "brightness(80%) grayscale(100%) sepia(70%)";
    include $_SERVER['DOCUMENT_ROOT'] . "/includes/head.php";
 ?>      
 
