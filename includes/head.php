@@ -113,7 +113,7 @@ $_SESSION["s_mode"] = $mode;
                         </ul>
                         
                         <!--My Social Handles -->
-                        <div class="fm-social-links offset-4 col-md-4 col-sm-12" style="background: beige;border-radius:20px;">
+                        <div class="fm-social-links offset-md-4 col-md-4 col-sm-12 col-xs-12" style="background: beige;border-radius:20px;">
                             
                             <a href="https://github.com/jsm33t" title="Behance" target="_blank"><i class="fa fa-github"></i></a>
                            <?php 
