@@ -176,27 +176,7 @@ blockquote .olive{
 /* ==============================
 Cursor
 ============================== */
-body {
-    margin: 0;
-    --color-link: #000;
-    --color-link-hover: #040203;
-    --color-content: #040203;
-    --font-alt: freight-display-pro, serif;
-    color: var(--color-text);
-    background-color: var(--color-bg);
-    font-family: soleil, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    --cursor-stroke: var(--olive);
-    --cursor-fill: none;
-    --cursor-stroke-width: 1px;
-}
 
-.progress-bar {
-height: 3px;
-background: var(--olive);
-width: 0%;
-}
    *,
 *::after,
 *::before {

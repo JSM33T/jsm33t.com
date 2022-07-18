@@ -6,14 +6,13 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (!isset($_GET["mode"]))
 {
-    $mode = "day";
+  $mode = "day";
 }
 else
 {
 $mode = $_GET["mode"];
 $_SESSION["s_mode"] = $mode;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,15 +39,36 @@ $_SESSION["s_mode"] = $mode;
         <style>
 <?php
   if($_SESSION["s_mode"] == "night")
-  {
-    echo " html{filter:brightness(80%) grayscale(100%) sepia(70%);}" ;  
-  }
+  { echo " html{filter:brightness(80%) grayscale(80%) sepia(90%);}"; }
   else
-  {
-    echo " html{filter:brightness(100%);}" ;  
-  }
-  
+  { echo " html{filter:brightness(100%);}" ;}
 ?>
+body {
+    margin: 0;
+    --color-link: #000;
+    --color-link-hover: #040203;
+    --color-content: #040203;
+    --font-alt: freight-display-pro, serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    font-family: soleil, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    --cursor-stroke: <?php echo $cur_stroke;?>;
+    --cursor-fill: none;
+    --cursor-stroke-width: 1px;
+}
+.fm-social-links {
+    padding: 6px;
+    font-size: 29px;
+    text-align: center;
+}
+
+.progress-bar {
+height: 3px;
+background: <?php echo $prog_color;?>;
+width: 0%;
+}
         </style>
 
     </head>
@@ -110,7 +130,7 @@ $_SESSION["s_mode"] = $mode;
                         </ul>
                         
                         <!--My Social Handles -->
-                        <div class="fm-social-links offset-md-4 col-md-4 col-sm-12 col-xs-12" style="background: beige;border-radius:20px;">
+                        <div class="fm-social-links offset-md-5 col-md-2 col-sm-6 offset-sm-6 col-xs-6 offset-xs-6" style="background: beige;border-radius:20px;">
                             
                             <a href="https://github.com/jsm33t" title="Behance" target="_blank"><i class="fa fa-github"></i></a>
                            <?php 
@@ -119,23 +139,23 @@ $_SESSION["s_mode"] = $mode;
                            if(!isset($_SESSION["s_mode"]))
                            {
                             $stat = "night";
+                            $icon = "moon-o";
                            }
                            else
                            {
                             if($_SESSION["s_mode"] == "night")
-                            {
-                             $stat = "day";
-                            }
-                          
-                            if($_SESSION["s_mode"] == "day")
-                            {
-                             $stat = "night";
-                            }
+                                {
+                                $stat = "day";
+                                $icon = "lightbulb-o";
+                                }
+                                if($_SESSION["s_mode"] == "day")
+                                {
+                                $stat = "night";
+                                $icon = "moon-o";
+                                }
                            }
-                          
-                         
                            ?>
-                            <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?')."?mode=".$stat; ?>" title="Spotify" ><i class="fa  fa-lightbulb-o" ></i></a> 
+                            <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?')."?mode=".$stat; ?>" title="Spotify" ><i class="fa  fa-<?php echo $icon;?>" ></i></a> 
                         </div>
                     </div>
                 </div>
