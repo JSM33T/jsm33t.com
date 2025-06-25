@@ -1,0 +1,35 @@
+:root {
+    --ar-primary: #415f7c;
+    --ar-primary-rgb: 65, 95, 124;
+    --ar-body-font-family: "Montserrat", sans-serif;
+    --ar-root-font-size: 1rem;
+    --ar-border-radius: 0rem;
+    --ar-link-color: #415f7c;
+    --ar-link-hover-color: #284663;
+}
+
+.btn-primary {
+    --ar-btn-bg: #415f7c;
+    --ar-btn-border-color: #415f7c;
+    --ar-btn-hover-bg: #284663;
+    --ar-btn-hover-border-color: #284663;
+    --ar-btn-active-bg: #284663;
+    --ar-btn-active-border-color: #284663;
+    --ar-btn-disabled-bg: #415f7c;
+    --ar-btn-disabled-border-color: #415f7c;
+}
+
+.btn-outline-primary {
+    --ar-btn-color: #415f7c;
+    --ar-btn-border-color: #415f7c;
+    --ar-btn-hover-bg: #415f7c;
+    --ar-btn-hover-border-color: #415f7c;
+    --ar-btn-active-bg: #415f7c;
+    --ar-btn-active-border-color: #415f7c;
+    --ar-btn-disabled-color: #415f7c;
+    --ar-btn-disabled-border-color: #415f7c;
+}
+
+.accordion-button:not(.collapsed)::after {
+    --ar-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='%23415f7c'%3e%3cpath%20d='M.5%206.3c.6-.6%201.6-.6%202.3%200l9.3%209.3%209.3-9.3c.6-.6%201.6-.6%202.3%200%20.6.6.6%201.6%200%202.3L13.3%2018.8c-.6.6-1.6.6-2.3%200L.8%208.5c-.9-.8-.9-1.6-.3-2.2z'/%3e%3c/svg%3e");
+}

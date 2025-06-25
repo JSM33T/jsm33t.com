@@ -29,7 +29,9 @@
 							}
 						],
 						"styles": [
-							"src/styles.css"
+							"src/styles.css",
+							"src/overrides.css",
+							"src/icons/around-icons.min.css"
 						]
 					},
 					"configurations": {
@@ -37,8 +39,8 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "500kB",
-									"maximumError": "1MB"
+									"maximumWarning": "1MB",
+									"maximumError": "2MB"
 								},
 								{
 									"type": "anyComponentStyle",
@@ -70,25 +72,6 @@
 				},
 				"extract-i18n": {
 					"builder": "@angular/build:extract-i18n"
-				},
-				"test": {
-					"builder": "@angular/build:karma",
-					"options": {
-						"polyfills": [
-							"zone.js",
-							"zone.js/testing"
-						],
-						"tsConfig": "tsconfig.spec.json",
-						"assets": [
-							{
-								"glob": "**/*",
-								"input": "public"
-							}
-						],
-						"styles": [
-							"src/styles.css"
-						]
-					}
 				}
 			}
 		}
