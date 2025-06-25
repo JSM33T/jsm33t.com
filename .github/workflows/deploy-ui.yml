@@ -1,0 +1,50 @@
+name: Deploy Angular UI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ui/**'
+
+jobs:
+  deploy-ui:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Angular UI
+        run: |
+          cd ui
+          npm ci
+          npm run build --prod
+
+      - name: Clean target UI folder on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            rm -rf /var/www/jsm33t.com/*
+
+      - name: Upload UI to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "ui/dist/ui/browser/"
+          target: "/var/www/jsm33t.com/"
+          strip_components: 3
+      - name: Move browser contents to root
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            mv /var/www/jsm33t.com/browser/* /var/www/jsm33t.com/
+            rm -rf /var/www/jsm33t.com/browser

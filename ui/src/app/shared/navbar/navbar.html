@@ -1,0 +1,48 @@
+<!-- Navbar -->
+<div class="navbar navbar-expand-lg fixed-top  navbar-light bg-light shadow-sm" role="navigation">
+	<div class="container">
+
+		<!-- Logo -->
+		<a class="navbar-brand pe-sm-3" href="/">
+			<span class="text-primary flex-shrink-0 me-2">
+				<!-- SVG Logo -->
+				JSM33T
+			</span>
+		</a>
+
+		<!-- Theme switcher (optional) -->
+		<div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto">
+			<input class="form-check-input" type="checkbox" id="theme-mode" [(ngModel)]="isDarkMode"
+				(change)="onThemeToggle()" />
+			<label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+			<label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+		</div>
+
+
+		<!-- Hamburger -->
+		<button class="navbar-toggler ms-sm-3" type="button" (click)="toggleNavbar()">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Menu -->
+		<nav class="collapse navbar-collapse" [ngClass]="{ 'show': isNavbarOpen }" id="navbarNav">
+			<ul class="navbar-nav navbar-nav-scroll me-auto">
+				<li class="nav-item" (click)="isNavbarOpen = false">
+					<a class="nav-link" routerLink="/" routerLinkActive="active"
+						[routerLinkActiveOptions]="{ exact: true }">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="/services" routerLinkActive="active">Services</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+				</li>
+
+			</ul>
+		</nav>
+
+	</div>
+</div>

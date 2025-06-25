@@ -1,0 +1,28 @@
+name: Deploy FastAPI
+
+on:
+  push:
+    paths:
+      - 'fast-api/**'
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/jsm33t_com_web
+            git pull origin main
+            sudo systemctl restart fastapi

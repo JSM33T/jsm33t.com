@@ -1,0 +1,52 @@
+name: Auto Deploy .NET API via Docker
+
+on:
+  push:
+    paths:
+      - 'dot-api/**'
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            echo ">> Ensure repo exists at /root/jsm33t_com_web"
+            if [ ! -d /root/jsm33t_com_web ]; then
+              git clone https://github.com/JSM33T/jsm33t_com_web.git /root/jsm33t_com_web
+            else
+              cd /root/jsm33t_com_web
+              git reset --hard
+              git pull
+            fi
+
+            echo ">> Navigate to dot-api"
+            cd /root/jsm33t_com_web/dot-api
+
+            echo ">> Stop and remove existing container..."
+            docker stop jassiapp || true
+            docker rm jassiapp || true
+
+            echo ">> Remove old image..."
+            docker rmi jassiapi || true
+
+            echo ">> Build new Docker image"
+            docker build --no-cache -t jassiapi .
+
+            echo ">> Run container"
+            docker run -d --name jassiapp -p 5000:8080 jassiapi
+
+            echo ">> Deployment complete"
+            docker ps
