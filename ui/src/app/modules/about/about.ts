@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { sectionsData } from './about.data';
 
 @Component({
 	selector: 'app-about',
-	imports: [RouterLink],
+	imports: [CommonModule],
 	templateUrl: './about.html',
 	styleUrl: './about.css'
 })
 export class About {
 	titleText = 'About';
 	descriptionText = 'This is the about page of our application.';
+	sections = sectionsData;
 
 	constructor(private title: Title, private meta: Meta) { }
 

@@ -1,5 +1,56 @@
-<section class="container py-5 text-center">
-	<h1 class="display-4">Welcome to About</h1>
-	<p class="lead">In Development.</p>
-	<a routerLink="" class="btn btn-primary mt-3">Back</a>
+<section class="container pt-5 mt-4 mt-sm-3 mt-xl-4 pb-4 mb-4 h-m-100">
+	<div class="row align-items-center pt-4 mt-xl-2">
+		<div class="col-md-6 col-xl-5 mb-4 mb-md-0">
+			<div class="ratio ratio-1x1 d-flex align-items-center position-relative rounded-circle overflow-hidden bg-size-cover mx-auto"
+				style="max-width: 530px; background-image: url(&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEeWZRdPUaL1L5Koity58hSE-D6Pc9XYbIAg&s&quot;); background-size: cover; background-color: rgb(17, 17, 17); opacity: 1; transform: none;">
+				<div class="bg-black position-absolute top-0 start-0 w-100 h-100 opacity-0"></div>
+				<div class="position-relative z-2 p-4" data-bs-theme="dark">
+					<div class="text-center mx-auto" style="max-width: 275px;"><span
+							class="d-block text-body fs-sm text-uppercase mb-3">About Me</span></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-xl-5 offset-xl-1" style="opacity: 1; transform: none;">
+			<div class="fs-sm text-uppercase mb-3 text-muted">About me</div>
+			<h2 class="display-6 fw-semibold mb-4">Hey, I’m Jassi 👋</h2>
+			<p class="fs-xl">Hi hi 👋 I’m Jasmeet (friends call me whatever sticks). I’ve had my hands on a keyboard
+				since childhood — breaking things, building them back, and falling in love with how tech works. Now, I’m
+				a full-time software engineer who designs systems and loves exploring new tools, patterns, and ideas. I
+				used to be into music too — dropped some bootlegs that made it to national radio and even composed two
+				original orchestral pieces. These days, I just vibe with sound when it calls.</p>
+			<p class="fs-xl mb-0">This space? It’s my cozy digital sketchbook — a mix of code, concepts, quiet projects,
+				and curiosities. Feel free to explore, drop a note, or just hang out 🌿</p>
+		</div>
+	</div>
+</section>
+<section class="container pt-2 pb-xxl-3">
+	<div class="row mt-5 pt-sm-2 pt-lg-3 pt-xl-4 pb-2 mb-2  pt-xxl-5">
+		<div class="col-md-10 col-lg-8 col-xl-7">
+			<h2 class="pb-sm-2">About the space</h2>
+			<p class="fs-lg mb-2 mb-sm-3 mb-lg-2">Built with friends and collaborators, not just by me. Everything here
+				is shaped by real feedback, open ideas, and teamwork — from tools and blogs to FAQs and changelogs. It’s
+				transparent, evolving, and always open to new contributions.</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row row-cols-1 row-cols-sm-2 g-4">
+				<div class="col" *ngFor="let section of sections">
+					<div class="card border-0 bg-secondary rounded-5 mb-4">
+						<div class="card-body pb-3">
+							<h3 class="h4">{{ section.title }}</h3>
+							<p class="mb-0">{{ section.description }}</p>
+						</div>
+						<div class="card-footer border-0 pt-3 mb-3">
+							<a class="btn btn-icon btn-lg btn-outline-primary rounded-circle stretched-link"
+								aria-label="Learn more" [href]="section.link">
+								<i class="ai ai-arrow-right"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+	</div>
 </section>

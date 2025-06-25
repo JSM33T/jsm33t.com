@@ -1,0 +1,40 @@
+<!-- Button to trigger the offcanvas -->
+<!-- <button class="btn btn-primary" (click)="openChatbot()">Open Chatbot</button> -->
+
+<!-- Offcanvas component -->
+<div class="offcanvas offcanvas-end" id="chatPanel" tabindex="-1" style="width: 400px;">
+  <div class="d-flex flex-column h-100">
+
+    <!-- Header -->
+    <div class="offcanvas-header border-bottom">
+      <h4 class="offcanvas-title">😺 Kitty Bot</h4>
+      <button class="btn-close" type="button" (click)="closeChatbot()"></button>
+    </div>
+
+    <!-- Scrollable Messages -->
+    <div id="scrollContainer" class="flex-grow-1 overflow-auto px-3 pt-3">
+      <div *ngFor="let msg of messages" class="mb-3" [ngClass]="msg.from === 'user' ? 'ms-auto' : ''">
+        <div class="d-flex align-items-end mb-2" [ngClass]="msg.from === 'user' ? 'ps-4' : 'pe-4 me-1'">
+          <div [ngClass]="msg.from === 'user' ? 'message-box-end bg-primary text-white' : 'message-box-start text-dark'">
+            {{ msg.text }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Box Fixed to Bottom -->
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="border-top p-2">
+      <div class="d-flex align-items-end">
+        <textarea
+          class="form-control border-0 flex-grow-1 me-2"
+          formControlName="userInput"
+          rows="2"
+          placeholder="Type a message"
+          (keydown)="handleKeyDown($event)">
+        </textarea>
+        <button class="btn btn-secondary" type="submit" [disabled]="isLoading">Send</button>
+      </div>
+    </form>
+
+  </div>
+</div>

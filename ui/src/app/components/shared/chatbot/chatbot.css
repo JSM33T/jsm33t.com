@@ -1,0 +1,19 @@
+/* Default offcanvas hidden */
+.offcanvas {
+  position: fixed;
+  top: 0;
+  right: -400px;  /* Start off the screen to the right */
+  width: 400px;  /* Adjust width as needed */
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: right 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+/* When the 'show' class is added, the offcanvas becomes visible and slides in */
+.offcanvas.show {
+  right: 0;  /* Slide in to the right */
+  visibility: visible;
+  opacity: 1;
+  transition: right 0.3s ease, opacity 0.3s ease, visibility 0s 0s;
+}
