@@ -23,17 +23,17 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            echo ">> Ensure repo exists at /root/jsm33t_com_web"
-            if [ ! -d /root/jsm33t_com_web ]; then
-              git clone https://github.com/JSM33T/jsm33t_com_web.git /root/jsm33t_com_web
+            echo ">> Ensure repo exists at /root/jsm33t.com"
+            if [ ! -d /root/jsm33t.com ]; then
+              git clone https://github.com/JSM33T/jsm33t.com.git /root/jsm33t.com
             else
-              cd /root/jsm33t_com_web
+              cd /root/jsm33t.com
               git reset --hard
               git pull
             fi
 
             echo ">> Navigate to dot-api"
-            cd /root/jsm33t_com_web/dot-api
+            cd /root/jsm33t.com/dot-api
 
             echo ">> Stop and remove existing container..."
             docker stop jassiapp || true

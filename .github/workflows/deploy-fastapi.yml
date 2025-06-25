@@ -13,16 +13,39 @@ jobs:
     environment: production
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}  # SSH host from secrets
+          username: ${{ secrets.SSH_USER }}  # SSH user from secrets
+          key: ${{ secrets.SSH_KEY }}  # SSH private key from secrets
           script: |
-            cd /root/jsm33t_com_web
-            git pull origin main
-            sudo systemctl restart fastapi
+            echo ">> Ensure repo exists at /home/deploy/jsm33t.com/fast-api"
+            if [ ! -d /home/deploy/jsm33t.com ]; then
+              sudo mkdir -p /home/deploy/jsm33t.com/fast-api  # Create the full path
+              git clone https://github.com/jsm33t/jsm33t.com.git /home/deploy/jsm33t.com  # Clone repo
+            else
+              cd /home/deploy/jsm33t.com
+              git reset --hard
+              git pull
+            fi
+
+            echo ">> Navigate to fast-api"
+            cd /home/deploy/jsm33t.com/fast-api
+
+            echo ">> Set up Python virtual environment"
+            python3 -m venv venv  # Create virtual environment if not already created
+            source venv/bin/activate  # Activate virtual environment
+            pip install -r requirements.txt  # Install dependencies
+
+            echo ">> Set environment variables"
+            echo "ENVX=${{ secrets.ENVX }}" > /home/deploy/jsm33t.com/fast-api/.env  # Set env variables
+
+            echo ">> Restart Gunicorn (FastAPI app)"
+            sudo systemctl restart fastapi  # Restart the Gunicorn service
+
+            echo ">> Verify Deployment"
+            curl -I http://localhost:8000  # Verify FastAPI is running and accessible
