@@ -1,0 +1,3 @@
+# Treat CSS and HTML files as binary to ignore their content changes
+*.css linguist-vendored
+*.html linguist-vendored
