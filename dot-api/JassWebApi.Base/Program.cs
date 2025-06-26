@@ -1,14 +1,20 @@
+using JassWebApi.Entities.Shared;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+var allConfig = builder.Configuration.GetSection("JsmtConfig").Get<JsmtConfig>();
 
+builder.Services.AddSingleton(allConfig!);
+
+builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-  app.MapOpenApi();
+    app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();

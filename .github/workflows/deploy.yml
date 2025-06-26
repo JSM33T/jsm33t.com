@@ -48,9 +48,6 @@ jobs:
             echo ">> Run container"
             docker run -d --name jassiapp -p 5000:8080 \
               -e SMTP_SERVER="${{ secrets.SMTP_SERVER }}" \
-              -e SMTP_PORT="${{ secrets.SMTP_PORT }}" \
-              -e SMTP_USERNAME="${{ secrets.SMTP_USERNAME }}" \
-              -e SMTP_PASSWORD="${{ secrets.SMTP_PASSWORD }}" \
               jassiapi
 
             echo ">> Deployment complete"

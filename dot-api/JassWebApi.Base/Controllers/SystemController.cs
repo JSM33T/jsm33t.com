@@ -1,5 +1,5 @@
+using JassWebApi.Entities.Shared;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace JassWebApi.Base.Controllers
 {
@@ -8,29 +8,38 @@ namespace JassWebApi.Base.Controllers
     public class SystemController : ControllerBase
     {
         private readonly ILogger<SystemController> _logger;
-        private readonly IConfiguration _configuration;
+        private readonly JsmtConfig _jsmtConfig;
 
-        // Injecting IConfiguration to read from appsettings.json and environment variables
-        public SystemController(ILogger<SystemController> logger, IConfiguration configuration)
+        // Injecting JsmtConfig directly
+        public SystemController(ILogger<SystemController> logger, JsmtConfig jsmtConfig)
         {
             _logger = logger;
-            _configuration = configuration;
+            _jsmtConfig = jsmtConfig;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
-            // Read SMTP server address from appsettings.json -> SMTP -> Server
-            var smtpServer = _configuration.GetValue<string>("SMTP:Server");
+            // Access SMTP configuration values
+            var smtpServer = _jsmtConfig.SMTP.Server;
+            var smtpPort = _jsmtConfig.SMTP.Port;
+            var smtpUsername = _jsmtConfig.SMTP.UserName;
+            var smtpPassword = _jsmtConfig.SMTP.Password;
+            var useSSL = _jsmtConfig.SMTP.UseSSL;
 
-            // If it's null or empty, set a default message
-            if (string.IsNullOrEmpty(smtpServer))
+            // Access ConnectionSettings (SQL connection string)
+            var msSqlConnectionString = _jsmtConfig.ConnectionSettings.MsSqlConstr;
+
+            // Return all configurations
+            return Ok(new
             {
-                smtpServer = "SMTP Server not set.";
-            }
-
-            // Return the SMTP server address
-            return Ok($"SMTP Server: {smtpServer}");
+                SmtpServer = smtpServer,
+                SmtpPort = smtpPort,
+                SmtpUsername = smtpUsername,
+                SmtpPassword = smtpPassword,
+                UseSSL = useSSL,
+                MsSqlConnectionString = msSqlConnectionString
+            });
         }
     }
 }
