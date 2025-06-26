@@ -16,7 +16,7 @@ namespace JassWebApi.Base.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			return Ok("Under Rennovation");
+			return Ok("Under Rennovation | Server Up and Running");
 		}
 	}
 }
