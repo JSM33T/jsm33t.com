@@ -3,10 +3,11 @@ import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { sectionsData } from './about.data';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
 	selector: 'app-about',
-	imports: [CommonModule],
+	imports: [CommonModule, RouterModule],
 	templateUrl: './about.html',
 	styleUrl: './about.css'
 })

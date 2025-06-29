@@ -1,20 +1,20 @@
 <app-navbar></app-navbar>
 
 <div class="page-loading active" [class.active]="isLoading()">
-    <div class="page-loading-inner">
-        <div class="page-spinner"></div>
+	<div class="page-loading-inner">
+		<div class="page-spinner"></div>
 
-        <div *ngIf="!isOnline" class="connection-error">
-            Disconnected
-        </div>
-        <div *ngIf="isOnline" class="connection-error">
-            Loading...
-        </div>
-    </div>
+		<div *ngIf="!isOnline" class="connection-error">
+			Disconnected
+		</div>
+		<div *ngIf="isOnline" class="connection-error">
+			Loading...
+		</div>
+	</div>
 </div>
 
 <main class="page-wrapper mt-5">
 	<router-outlet />
 </main>
-
+<app-modal />
 <app-chatbot></app-chatbot>

@@ -1,0 +1,29 @@
+<section class="container py-4 pt-4 mt-4">
+	<h2 class="mb-4">Change Log</h2>
+
+	<div *ngIf="changelogGrouped.length === 0" class="alert alert-info text-center">
+		No change logs available.
+	</div>
+
+	<div *ngFor="let versionGroup of changelogGrouped">
+		<h4 class="mt-4">{{ versionGroup.version }}</h4>
+
+		<ul class="list-group mb-3">
+			<li *ngFor="let log of versionGroup.items" class="list-group-item">
+				<div class="d-flex justify-content-between align-items-center">
+					<div>
+						<span class="badge me-2" [ngClass]="{
+                'bg-success': log.type === 'Added',
+                'bg-danger': log.type === 'Removed',
+                'bg-warning': log.type === 'Fixed'
+              }">
+							{{ log.type }}
+						</span>
+						{{ log.description }}
+					</div>
+					<small class="text-muted">{{ log.createdAt | date: 'medium' }}</small>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>

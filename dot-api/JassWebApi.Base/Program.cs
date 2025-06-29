@@ -16,6 +16,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IChangeLogRepository, ChangeLogRepository>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost4200",
+        policy => policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -26,7 +36,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();
-
+app.UseCors("AllowLocalhost4200");
 app.MapControllers();
 app.MapFallbackToFile("index.html");
 

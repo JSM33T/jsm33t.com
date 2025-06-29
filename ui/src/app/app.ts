@@ -4,17 +4,18 @@ import { Navbar } from "./components/shared/navbar/navbar";
 import { NetworkService } from './services/network-service';
 import { CommonModule, NgIf } from '@angular/common';
 import { Chatbot } from './components/shared/chatbot/chatbot';
+import { Modal } from './components/shared/modal/modal';
 
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet, Navbar, CommonModule,Chatbot],
+	imports: [RouterOutlet, Navbar, CommonModule, Chatbot, Modal],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
 export class App {
 
-    isLoading = signal(true);
+	isLoading = signal(true);
 	isOnline = inject(NetworkService).isOnline;
 
 	network = inject(NetworkService);

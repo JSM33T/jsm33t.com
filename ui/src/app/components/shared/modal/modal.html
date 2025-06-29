@@ -1,0 +1,20 @@
+<!-- Other app content -->
+
+<div class="modal fade" id="customizer-modal" tabindex="-1" role="dialog" aria-modal="true" style="display: none;">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+		<div class="modal-content border border-primary">
+			<div class="modal-header">
+				<h4 class="modal-title">Default Title</h4>
+				<button class="btn-close" type="button" (click)="modalService.close('customizer-modal')"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body py-4">
+				<p>Default body content.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary w-100 w-sm-auto mb-3 mb-sm-0" type="button"
+					(click)="modalService.close('customizer-modal')">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
