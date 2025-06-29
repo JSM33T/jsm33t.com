@@ -5,33 +5,24 @@ namespace JassWebApi.Base.Controllers
 {
     [ApiController]
     [Route("/")]
-    public class SystemController : ControllerBase
+    public class SystemController(ILogger<SystemController> logger, JsmtConfig jsmtConfig) : JsmtBaseController
     {
-        private readonly ILogger<SystemController> _logger;
-        private readonly JsmtConfig _jsmtConfig;
-
-        // Injecting JsmtConfig directly
-        public SystemController(ILogger<SystemController> logger, JsmtConfig jsmtConfig)
-        {
-            _logger = logger;
-            _jsmtConfig = jsmtConfig;
-        }
+        private readonly ILogger<SystemController> _logger = logger;
+        private readonly JsmtConfig _jsmtConfig = jsmtConfig;
 
         [HttpGet]
         public IActionResult Get()
         {
-            // Access SMTP configuration values
             var smtpServer = _jsmtConfig.SMTP.Server;
             var smtpPort = _jsmtConfig.SMTP.Port;
             var smtpUsername = _jsmtConfig.SMTP.UserName;
             var smtpPassword = _jsmtConfig.SMTP.Password;
             var useSSL = _jsmtConfig.SMTP.UseSSL;
 
-            // Access ConnectionSettings (SQL connection string)
             var msSqlConnectionString = _jsmtConfig.ConnectionSettings.MsSqlConstr;
 
             // Return all configurations
-            return Ok(new
+            var rr = new
             {
                 SmtpServer = smtpServer,
                 SmtpPort = smtpPort,
@@ -39,7 +30,9 @@ namespace JassWebApi.Base.Controllers
                 SmtpPassword = smtpPassword,
                 UseSSL = useSSL,
                 MsSqlConnectionString = msSqlConnectionString
-            });
+            };
+
+            return RESP_Success(rr);
         }
     }
 }

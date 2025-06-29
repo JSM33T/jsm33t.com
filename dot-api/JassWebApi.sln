@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Base", "JassWebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Entities", "JassWebApi.Entities\JassWebApi.Entities.csproj", "{8017D16C-9D0F-4296-879B-2892DAD28852}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Data", "JassWebApi.Data\JassWebApi.Data.csproj", "{88545A59-80E2-4779-9977-0EBEB5761267}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8017D16C-9D0F-4296-879B-2892DAD28852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8017D16C-9D0F-4296-879B-2892DAD28852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8017D16C-9D0F-4296-879B-2892DAD28852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88545A59-80E2-4779-9977-0EBEB5761267}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88545A59-80E2-4779-9977-0EBEB5761267}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88545A59-80E2-4779-9977-0EBEB5761267}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88545A59-80E2-4779-9977-0EBEB5761267}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

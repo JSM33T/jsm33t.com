@@ -18,5 +18,6 @@ namespace JassWebApi.Entities.Shared
     public class ConnectionSettings
     {
         public string MsSqlConstr { get; set; } = string.Empty;
+        public string PostgresConstr { get; set; } = string.Empty;
     }
 }

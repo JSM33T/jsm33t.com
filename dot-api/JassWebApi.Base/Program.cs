@@ -1,5 +1,6 @@
+using JassWebApi.Data;
 using JassWebApi.Entities.Shared;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,11 @@ builder.Services.AddSingleton(allConfig!);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(allConfig?.ConnectionSettings.PostgresConstr));
+
+builder.Services.AddScoped<IChangeLogRepository, ChangeLogRepository>();
 
 var app = builder.Build();
 
