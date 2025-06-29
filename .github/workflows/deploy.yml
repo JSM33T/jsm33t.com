@@ -35,6 +35,9 @@ jobs:
             echo ">> Navigate to dot-api"
             cd /root/jsm33t.com/dot-api
 
+            echo ">> Ensure appsettings.json exists in dot-api"
+            cp /root/appsettings.json /root/jsm33t.com/dot-api/appsettings.json && ls -l /root/jsm33t.com/dot-api/
+
             echo ">> Stop and remove existing container..."
             docker stop jassiapp || true
             docker rm jassiapp || true
