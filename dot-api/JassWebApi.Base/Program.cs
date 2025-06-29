@@ -20,7 +20,7 @@ builder.Services.AddScoped<IChangeLogRepository, ChangeLogRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost4200",
-        policy => policy.WithOrigins("http://localhost:4200")
+        policy => policy.WithOrigins("http://localhost:4200", "https://jsm33t.com")
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
