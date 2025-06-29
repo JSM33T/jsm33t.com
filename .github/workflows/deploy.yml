@@ -91,7 +91,7 @@ jobs:
 
             # Ensure appsettings.json in dot-api
             echo ">> Copying appsettings.json"
-            cp /root/appsettings.json dot-api/appsettings.json
+            cp /root/appsettings.json dot-api/JassWebApi.Base/appsettings.json
             ls -l dot-api/
 
             # Navigate to dot-api

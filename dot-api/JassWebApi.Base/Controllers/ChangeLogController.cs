@@ -28,7 +28,7 @@ namespace JassWebApi.Base.Controllers
         {
             var log = _changeLogRepository.GetByVersion(version);
             if (log == null)
-                return RESP_NotFoundResponse($"ChangeLog with version {version} not found");
+                return RESP_NotFoundResponse($"ChangeLog with version {version} not found ");
             return RESP_Success(log);
         }
 
