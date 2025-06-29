@@ -4,6 +4,7 @@ namespace JassWebApi.Entities.Shared
     {
         public SmtpConfig SMTP { get; set; } = new SmtpConfig();
         public ConnectionSettings ConnectionSettings { get; set; } = new ConnectionSettings();
+        public bool CacheEnabled { get; set; }
     }
 
     public class SmtpConfig

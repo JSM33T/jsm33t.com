@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using JassWebApi.Base.Filters;
 using JassWebApi.Data;
 using JassWebApi.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +17,12 @@ namespace JassWebApi.Base.Controllers
         }
 
         // GET: api/changelog
+        [Persist(5)]
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var logs = _changeLogRepository.GetAll();
+            await Task.Delay(5000); // Simulate async operation
             return RESP_Success(logs);
         }
 
