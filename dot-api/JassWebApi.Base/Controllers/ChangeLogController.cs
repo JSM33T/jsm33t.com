@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JassWebApi.Base.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/changelog")]
     public class ChangeLogController : JsmtBaseController
     {
         private readonly IChangeLogRepository _changeLogRepository;
