@@ -7,14 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace JassWebApi.Base.Controllers
 {
     [Route("api/changelog")]
-    public class ChangeLogController : JsmtBaseController
+    public class ChangeLogController(IChangeLogRepository changeLogRepository) : JsmtBaseController
     {
-        private readonly IChangeLogRepository _changeLogRepository;
-
-        public ChangeLogController(IChangeLogRepository changeLogRepository)
-        {
-            _changeLogRepository = changeLogRepository;
-        }
+        private readonly IChangeLogRepository _changeLogRepository = changeLogRepository;
 
         // GET: api/changelog
         [Persist(5)]
@@ -22,7 +17,6 @@ namespace JassWebApi.Base.Controllers
         public async Task<IActionResult> GetAll()
         {
             var logs = _changeLogRepository.GetAll();
-            await Task.Delay(5000); // Simulate async operation
             return RESP_Success(logs);
         }
 

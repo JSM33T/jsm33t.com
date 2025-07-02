@@ -15,6 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(allConfig?.ConnectionSettings.PostgresConstr));
 
 builder.Services.AddScoped<IChangeLogRepository, ChangeLogRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
 
 builder.Services.AddCors(options =>

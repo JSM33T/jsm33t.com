@@ -14,6 +14,8 @@ namespace JassWebApi.Data
         }
 
         public DbSet<ChangeLog> ChangeLogs { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

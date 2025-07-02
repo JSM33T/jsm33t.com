@@ -6,15 +6,10 @@ using JassWebApi.Entities.Shared;
 
 namespace JassWebApi.Base.Filters
 {
-    public class PersistAttribute : ActionFilterAttribute
+    public class PersistAttribute(int minutes) : ActionFilterAttribute
     {
-        private readonly int _minutes;
+        private readonly int _minutes = minutes;
         private static readonly ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
-
-        public PersistAttribute(int minutes)
-        {
-            _minutes = minutes;
-        }
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
