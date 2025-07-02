@@ -12,5 +12,9 @@ export const routes: Routes = [
 	{
 		path: 'changelog',
 		loadComponent: () => import('./modules/changelog/changelog').then(m => m.Changelog)
+	},
+	{
+		path: 'blogs',
+		loadComponent: () => import('./modules/blog/blog').then(m => m.Blog)
 	}
 ];

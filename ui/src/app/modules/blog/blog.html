@@ -1,0 +1,91 @@
+<div class="container pt-5 pb-lg-5 pb-md-4 pb-2 my-5">
+
+	<!-- Breadcrumb -->
+	<nav aria-label="breadcrumb">
+		<ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Blog</li>
+		</ol>
+	</nav>
+
+	<div class="row mb-md-2 mb-xl-4">
+
+		<!-- Blog posts -->
+		<div class="col-lg-9 pe-lg-4 pe-xl-5">
+			<h1 class="pb-3 pb-lg-4">Latest Blogs</h1>
+
+			<!-- Post -->
+			<article *ngFor="let blog of blogs" class="row g-0 border-0 mb-4">
+				<a class="col-sm-5 bg-repeat-0 bg-size-cover bg-position-center rounded-5"
+					[routerLink]="['/blog', blog.slug]"
+					[style.backgroundImage]="'url(/assets/img/blog/list/default.jpg)'" style="min-height: 14rem"
+					[attr.aria-label]="blog.title"></a>
+				<div class="col-sm-7">
+					<div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+						<h3>
+							<a [routerLink]="['/blog', blog.slug]">{{ blog.title }}</a>
+						</h3>
+						<p class="d-sm-none d-md-block">{{ blog.description }}</p>
+						<div class="d-flex flex-wrap align-items-center mt-n2">
+							<span class="fs-sm text-body-secondary mt-2">{{ blog.createdAt | date: 'mediumDate'
+								}}</span>
+							<span class="fs-xs opacity-20 mt-2 mx-3">|</span>
+							<a class="badge text-nav fs-xs border mt-2" href="#">{{ blog.categoryName }}</a>
+						</div>
+					</div>
+				</div>
+			</article>
+
+			<!-- No blogs found -->
+			<div *ngIf="blogs.length === 0" class="alert alert-info text-center">
+				No blogs found.
+			</div>
+
+		</div>
+
+		<!-- Sidebar -->
+		<aside class="col-lg-3">
+			<div class="offcanvas-lg offcanvas-end" id="sidebarBlog">
+				<div class="offcanvas-header">
+					<h4 class="offcanvas-title">Filters</h4>
+					<button class="btn-close ms-auto" type="button"
+						(click)="offcanvasService.toggleOffcanvas('sidebarBlog')" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body">
+
+					<!-- Years filter -->
+					<h5>Years</h5>
+					<ul class="list-group mb-4">
+						<li class="list-group-item" [ngClass]="{'active': !selectedYear}" (click)="selectYear(null)">All
+						</li>
+						<li *ngFor="let year of years" class="list-group-item"
+							[ngClass]="{'active': selectedYear === year}" (click)="selectYear(year)">
+							{{ year }}
+						</li>
+					</ul>
+
+					<!-- Categories filter -->
+					<h5>Categories</h5>
+					<ul class="list-group mb-4">
+						<li class="list-group-item" [ngClass]="{'active': !selectedCategoryId}"
+							(click)="selectCategory(null)">All</li>
+						<li *ngFor="let category of categories" class="list-group-item"
+							[ngClass]="{'active': selectedCategoryId === category.id}"
+							(click)="selectCategory(category.id)">
+							{{ category.name }}
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</aside>
+
+	</div>
+</div>
+
+<!-- Sidebar toggle button -->
+<button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" type="button"
+	(click)="offcanvasService.toggleOffcanvas('sidebarBlog')">
+	<i class="ai-layout-column me-2"></i>
+	Filters
+</button>
