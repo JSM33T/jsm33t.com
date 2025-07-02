@@ -55,7 +55,7 @@ namespace JassWebApi.Data
             if (filter.ToDate.HasValue)
                 query = query.Where(b => b.CreatedAt <= filter.ToDate.Value);
 
-            if (filter.CategoryId.HasValue)
+            if (filter.CategoryId.HasValue && filter.CategoryId.Value != 0)
                 query = query.Where(b => b.CategoryId == filter.CategoryId.Value);
 
             if (!string.IsNullOrEmpty(filter.Tag))
@@ -77,6 +77,7 @@ namespace JassWebApi.Data
                     CategoryId = b.CategoryId,
                     CategoryName = b.Category.Name,
                     CategorySlug = b.Category.Slug,
+                    CoverImage = b.CoverImage,
                     CreatedAt = b.CreatedAt,
                     UpdatedAt = b.UpdatedAt
                 })

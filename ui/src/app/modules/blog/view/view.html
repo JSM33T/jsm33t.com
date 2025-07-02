@@ -1,0 +1,47 @@
+<div class="container pt-5 pb-lg-5 pb-md-4 pb-2 my-5">
+
+	<!-- Breadcrumb -->
+	<nav aria-label="breadcrumb">
+		<ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
+			<li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+			<li class="breadcrumb-item"><a routerLink="/blog">Blog</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ blog?.title }}</li>
+		</ol>
+	</nav>
+
+	<div class="row mb-md-2 mb-xl-4 justify-content-center">
+
+		<div class="col-lg-10">
+
+			<!-- Blog post -->
+			<div *ngIf="blog">
+				<h1 class="pb-2">{{ blog.title }}</h1>
+
+				<div class="d-flex flex-wrap align-items-center mb-3">
+					<span class="fs-sm text-body-secondary me-3">{{ blog.createdAt | date: 'mediumDate' }}</span>
+					<span class="badge bg-secondary me-2">{{ blog.category?.name }}</span>
+
+					<!-- Tags -->
+					<ng-container *ngIf="blog.tags">
+						<span *ngFor="let tag of blog.tags.replace('{','').replace('}','').split(',')"
+							class="badge bg-primary me-2" style="cursor:pointer;" (click)="filterByTag(tag)">
+							{{ tag }}
+						</span>
+					</ng-container>
+
+				</div>
+
+				<!-- Blog content -->
+				<div class="blog-content">
+					<div [innerHTML]="blog.content"></div>
+				</div>
+			</div>
+
+			<!-- Blog not found -->
+			<div *ngIf="!blog" class="alert alert-warning text-center">
+				Blog not found.
+			</div>
+
+		</div>
+	</div>
+</div>

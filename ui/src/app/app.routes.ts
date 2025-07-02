@@ -16,5 +16,9 @@ export const routes: Routes = [
 	{
 		path: 'blogs',
 		loadComponent: () => import('./modules/blog/blog').then(m => m.Blog)
+	},
+	{
+		path: 'blog/:slug',
+		loadComponent: () => import('./modules/blog/view/view').then(m => m.View)
 	}
 ];
