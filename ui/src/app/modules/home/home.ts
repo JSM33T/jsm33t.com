@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Meta } from '@angular/platform-browser';
+import { Logo } from '../../components/animations/logo/logo';
+
 
 @Component({
 	selector: 'app-home',
-	imports: [RouterLink],
+	imports: [RouterLink, Logo],
 	templateUrl: './home.html',
 	styleUrl: './home.css'
 })

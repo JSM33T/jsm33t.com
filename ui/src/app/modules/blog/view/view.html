@@ -10,12 +10,35 @@
 	</nav>
 
 	<div class="row mb-md-2 mb-xl-4 justify-content-center">
-
 		<div class="col-lg-10">
 
+			<!-- Skeleton loader -->
+			<div *ngIf="isLoading">
+				<div class="card" aria-hidden="true">
+					<div class="position-relative placeholder-wave">
+						<div class="card-img-top placeholder ratio ratio-16x9"></div>
+						<i class="ai-image position-absolute top-50 start-50 translate-middle fs-1 opacity-50"></i>
+					</div>
+					<div class="card-body">
+						<h5 class="card-title placeholder-glow">
+							<span class="placeholder col-6"></span>
+						</h5>
+						<p class="card-text placeholder-glow">
+							<span class="placeholder placeholder-sm col-7 me-2"></span>
+							<span class="placeholder placeholder-sm col-4"></span>
+							<span class="placeholder placeholder-sm col-4 me-2"></span>
+							<span class="placeholder placeholder-sm col-6"></span>
+							<span class="placeholder placeholder-sm col-8"></span>
+						</p>
+						<a class="btn btn-primary disabled placeholder col-6 placeholder-wave"></a>
+					</div>
+				</div>
+			</div>
+
 			<!-- Blog post -->
-			<div *ngIf="blog">
+			<div *ngIf="!isLoading && blog">
 				<h1 class="pb-2">{{ blog.title }}</h1>
+
 
 				<div class="d-flex flex-wrap align-items-center mb-3">
 					<span class="fs-sm text-body-secondary me-3">{{ blog.createdAt | date: 'mediumDate' }}</span>
@@ -25,21 +48,21 @@
 					<ng-container *ngIf="blog.tags">
 						<span *ngFor="let tag of blog.tags.replace('{','').replace('}','').split(',')"
 							class="badge bg-primary me-2" style="cursor:pointer;" (click)="filterByTag(tag)">
-							{{ tag }}
+							#{{ tag }}
 						</span>
 					</ng-container>
-
 				</div>
+				<img [src]="blog.coverImage || '/assets/img/blog/list/default.jpg'" alt="Default cover image"
+					class="img-fluid rounded-5 mb-3 cropped-image">
 
 				<!-- Blog content -->
 				<div class="blog-content">
-					<!-- <div [innerHTML]="blog.content"></div> -->
 					<div [innerHTML]="blog.parsedContent"></div>
 				</div>
 			</div>
 
 			<!-- Blog not found -->
-			<div *ngIf="!blog" class="alert alert-warning text-center">
+			<div *ngIf="!isLoading && !blog" class="alert alert-warning text-center">
 				Blog not found.
 			</div>
 

@@ -13,17 +13,48 @@
 		<!-- Blog posts -->
 		<div class="col-lg-9 pe-lg-4 pe-xl-5">
 			<h1 class="pb-3 pb-lg-4">Latest Blogs</h1>
+
 			<!-- Clear filters button -->
 			<div *ngIf="selectedYear || selectedCategoryId" class="mb-3 d-flex justify-content-end">
 				<button class="btn btn-outline-secondary btn-sm" (click)="clearFilters()">
 					Clear Filters
 				</button>
 			</div>
-			<!-- Post -->
-			<article *ngFor="let blog of blogs" class="row g-0 border-0 mb-4">
+
+			<!-- Skeleton loader -->
+			<div *ngIf="isLoading">
+				<div *ngFor="let skeleton of [1,2]" class="row g-0 border-0 mb-4">
+					<!-- Left side image placeholder -->
+					<div class="col-sm-5">
+						<div class="placeholder-wave w-100 h-100 rounded-5" style="min-height: 14rem;">
+							<div class="placeholder w-100 h-100 rounded-5"></div>
+						</div>
+					</div>
+					<!-- Right side text placeholders -->
+					<div class="col-sm-7">
+						<div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
+							<h3 class="placeholder-glow">
+								<span class="placeholder col-8"></span>
+							</h3>
+							<p class="placeholder-glow">
+								<span class="placeholder col-6"></span>
+								<span class="placeholder col-4"></span>
+							</p>
+							<div class="d-flex flex-wrap align-items-center mt-n2 placeholder-glow">
+								<span class="placeholder col-3 me-2"></span>
+								<span class="placeholder col-2"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Actual blogs -->
+			<article *ngFor="let blog of blogs" class="row g-0 border-0 mb-4" [hidden]="isLoading">
 				<a class="col-sm-5 bg-repeat-0 bg-size-cover bg-position-center rounded-5"
 					[routerLink]="['/blog', blog.slug]"
-					[style.backgroundImage]="'url(' + (blog.coverImage || '/assets/img/blog/list/default.jpg') + ')'"
+					[style.backgroundImage]="'url(' + (blog.coverImage || '/assets/img/blog/list/default.jpg') + ')' "
 					style="min-height: 14rem" [attr.aria-label]="blog.title"></a>
 				<div class="col-sm-7">
 					<div class="pt-4 pb-sm-4 ps-sm-4 pe-lg-4">
@@ -42,12 +73,12 @@
 			</article>
 
 			<!-- No blogs found -->
-			<div *ngIf="blogs.length === 0" class="alert alert-info text-center">
+			<div *ngIf="!isLoading && blogs.length === 0" class="alert alert-info text-center">
 				No blogs found.
 			</div>
 
 			<!-- Pagination controls -->
-			<div class="d-flex justify-content-between align-items-center mt-4">
+			<div class="d-flex justify-content-between align-items-center mt-4" [hidden]="isLoading">
 				<div>
 					<button class="btn btn-secondary me-2" (click)="prevPage()"
 						[disabled]="currentPage === 1">Prev</button>

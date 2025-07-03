@@ -1,3 +1,10 @@
 p {
 	font-size: calc(var(--ar-body-font-size) * 1.125) !important
 }
+
+.cropped-image {
+	width: 1280px;
+	height: 768px;
+	object-fit: cover;
+	object-position: center;
+}

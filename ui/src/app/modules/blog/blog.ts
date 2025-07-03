@@ -27,7 +27,7 @@ export class Blog {
 	categories: any[] = [];
 	selectedCategoryId: number | null = null;
 	isSideBarOpen: boolean = false;
-
+	isLoading: boolean = true; // ✅ added
 	offcanvasService = inject(OffcanvasService);
 
 	years: number[] = [2023, 2024, 2025, 2026, 2027, 2028];
@@ -61,8 +61,8 @@ export class Blog {
 				fromDate = `${this.selectedYear}-01-01T00:00:00Z`;
 				toDate = `${this.selectedYear}-12-31T23:59:59Z`;
 			} else {
-				fromDate = '1970-01-01T00:00:00Z'; // or your earliest blog date
-				toDate = '2100-12-31T23:59:59Z'; // or your future end date
+				fromDate = '1970-01-01T00:00:00Z';
+				toDate = '2100-12-31T23:59:59Z';
 			}
 
 			const request: BlogFilterRequest = {
@@ -86,13 +86,18 @@ export class Blog {
 	}
 
 	fetchBlogs(request: BlogFilterRequest): void {
+		this.isLoading = true; // ✅ set loading before request
 		this.httpApiService.post<any>(`${this.apiUrl}/blog/filter`, request)
 			.subscribe(res => {
+				this.isLoading = false; // ✅ stop loading after response
 				this.blogs = res.data.items || [];
 				this.totalPages = res.data.totalPages || 100;
+			}, err => {
+				this.isLoading = false; // ✅ stop loading on error
+				console.error('API error:', err);
+				this.blogs = [];
 			});
 	}
-
 	selectCategory(categoryId: number | null): void {
 		const queryParams = { ...this.route.snapshot.queryParams };
 

@@ -1,9 +1,6 @@
 using JassWebApi.Base.Filters;
 using JassWebApi.Data;
-using JassWebApi.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace JassWebApi.Base.Controllers
 {
@@ -15,19 +12,11 @@ namespace JassWebApi.Base.Controllers
 
         // POST: api/blog/filter
         [HttpPost("filter")]
-        public IActionResult GetBlogs([FromBody] BlogFilter filter)
+        public async Task<IActionResult> GetBlogs([FromBody] BlogFilter filter)
         {
             var blogs = _blogRepository.GetBlogs(filter);
             return RESP_Success(blogs);
         }
-
-        // POST: api/blog
-        //[HttpPost]
-        //public IActionResult Insert([FromBody] Blog blog)
-        //{
-        //    var inserted = _blogRepository.Insert(blog);
-        //    return RESP_Success(inserted, "Inserted successfully");
-        //}
 
         // GET: api/blog/{id}
         [HttpGet("id/{id}")]
@@ -42,7 +31,7 @@ namespace JassWebApi.Base.Controllers
 
         [Persist(10)]
         [HttpGet("view/{slug}")]
-        public IActionResult GetBySlug(string slug)
+        public async Task<IActionResult> GetBySlug(string slug)
         {
             var blog = _blogRepository.GetBySlug(slug);
             if (blog == null)
@@ -63,13 +52,13 @@ namespace JassWebApi.Base.Controllers
         public IActionResult GetCategories()
         {
             var categories = _blogRepository.GetAll()
-          .Select(c => new
-          {
-              c.Id,
-              c.Name,
-              c.Slug
-          })
-          .ToList();
+              .Select(c => new
+              {
+                  c.Id,
+                  c.Name,
+                  c.Slug
+              })
+              .ToList();
 
             return RESP_Success(categories);
         }
