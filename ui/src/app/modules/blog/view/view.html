@@ -4,7 +4,7 @@
 	<nav aria-label="breadcrumb">
 		<ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
 			<li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-			<li class="breadcrumb-item"><a routerLink="/blog">Blog</a></li>
+			<li class="breadcrumb-item"><a routerLink="/blogs">Blogs</a></li>
 			<li class="breadcrumb-item active" aria-current="page">{{ blog?.title }}</li>
 		</ol>
 	</nav>
@@ -33,7 +33,8 @@
 
 				<!-- Blog content -->
 				<div class="blog-content">
-					<div [innerHTML]="blog.content"></div>
+					<!-- <div [innerHTML]="blog.content"></div> -->
+					<div [innerHTML]="blog.parsedContent"></div>
 				</div>
 			</div>
 

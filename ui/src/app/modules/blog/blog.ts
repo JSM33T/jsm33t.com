@@ -54,16 +54,26 @@ export class Blog {
 			this.currentPage = +params['page'] || 1;
 			this.pageSize = +params['pageSize'] || 10;
 
-			const year = this.selectedYear || new Date().getFullYear();
+			let fromDate: string;
+			let toDate: string;
+
+			if (this.selectedYear) {
+				fromDate = `${this.selectedYear}-01-01T00:00:00Z`;
+				toDate = `${this.selectedYear}-12-31T23:59:59Z`;
+			} else {
+				fromDate = '1970-01-01T00:00:00Z'; // or your earliest blog date
+				toDate = '2100-12-31T23:59:59Z'; // or your future end date
+			}
 
 			const request: BlogFilterRequest = {
-				fromDate: `${year}-01-01T00:00:00Z`,
-				toDate: `${year}-12-31T23:59:59Z`,
+				fromDate: fromDate,
+				toDate: toDate,
 				categoryId: this.selectedCategoryId || 0,
 				tag: params['tag'] || '',
 				page: this.currentPage,
 				pageSize: this.pageSize
 			};
+
 			this.fetchBlogs(request);
 		});
 	}
@@ -137,6 +147,18 @@ export class Blog {
 
 	setPageSize(size: number): void {
 		this.pageSize = size;
-		this.updatePage(1); // reset to first page on page size change
+		this.updatePage(1);
+	}
+
+	clearFilters(): void {
+		const queryParams = { ...this.route.snapshot.queryParams };
+
+		delete queryParams['categoryId'];
+		delete queryParams['year'];
+
+		this.router.navigate([], {
+			relativeTo: this.route,
+			queryParams: queryParams
+		});
 	}
 }

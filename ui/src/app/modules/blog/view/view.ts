@@ -3,7 +3,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpApiService } from '../../../services/httpapi-service';
 import { environment } from '../../../../environments/environment';
-
+import { marked } from 'marked';
+import hljs from 'highlight.js';
 
 @Component({
 	selector: 'app-blog-view',
@@ -27,6 +28,20 @@ export class View {
 				this.fetchBlog();
 			}
 		});
+
+		// Setup custom renderer for syntax highlighting with correct signature
+		const renderer = new marked.Renderer();
+
+		renderer.code = ({ text, lang }) => {
+			if (lang && hljs.getLanguage(lang)) {
+				const highlighted = hljs.highlight(text, { language: lang }).value;
+				return `<pre><code class="hljs ${lang}">${highlighted}</code></pre>`;
+			} else {
+				return `<pre><code class="hljs">${hljs.highlightAuto(text).value}</code></pre>`;
+			}
+		};
+
+		marked.use({ renderer });
 	}
 
 	fetchBlog(): void {
@@ -34,13 +49,14 @@ export class View {
 			.subscribe(res => {
 				if (res.status === 200) {
 					this.blog = res.data;
+					this.blog.parsedContent = marked.parse(this.blog.content || '');
 				} else {
 					console.error('Failed to fetch blog:', res.message);
 				}
 			});
 	}
+
 	filterByTag(tag: string): void {
-		// Navigate to blog list with tag as query param
 		this.router.navigate(['/blogs'], { queryParams: { tag: tag } });
 	}
 }

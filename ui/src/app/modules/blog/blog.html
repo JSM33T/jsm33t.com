@@ -13,7 +13,12 @@
 		<!-- Blog posts -->
 		<div class="col-lg-9 pe-lg-4 pe-xl-5">
 			<h1 class="pb-3 pb-lg-4">Latest Blogs</h1>
-
+			<!-- Clear filters button -->
+			<div *ngIf="selectedYear || selectedCategoryId" class="mb-3 d-flex justify-content-end">
+				<button class="btn btn-outline-secondary btn-sm" (click)="clearFilters()">
+					Clear Filters
+				</button>
+			</div>
 			<!-- Post -->
 			<article *ngFor="let blog of blogs" class="row g-0 border-0 mb-4">
 				<a class="col-sm-5 bg-repeat-0 bg-size-cover bg-position-center rounded-5"
@@ -27,7 +32,7 @@
 						</h3>
 						<p class="d-sm-none d-md-block">{{ blog.description }}</p>
 						<div class="d-flex flex-wrap align-items-center mt-n2">
-							<span class="fs-sm text-body-secondary mt-2">{{ blog.createdAt | date: 'mediumDate'
+							<span class="fs-sm text-body-secondary mt-2">{{ blog.publishedAt | date: 'mediumDate'
 								}}</span>
 							<span class="fs-xs opacity-20 mt-2 mx-3">|</span>
 							<a class="badge text-nav fs-xs border mt-2" href="#">{{ blog.categoryName }}</a>
