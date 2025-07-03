@@ -61,6 +61,8 @@ namespace JassWebApi.Data
             if (!string.IsNullOrEmpty(filter.Tag))
                 query = query.Where(b => b.Tags.Contains(filter.Tag));
 
+            query = query.Where(b => b.PublishedAt <= DateTime.UtcNow);
+
             var totalCount = query.Count();
 
             var items = query
@@ -79,7 +81,7 @@ namespace JassWebApi.Data
                     CategorySlug = b.Category.Slug,
                     CoverImage = b.CoverImage,
                     CreatedAt = b.CreatedAt,
-                    UpdatedAt = b.UpdatedAt
+                    PublishedAt = b.PublishedAt
                 })
                 .ToList();
 

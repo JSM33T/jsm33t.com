@@ -14,7 +14,7 @@ namespace JassWebApi.Entities
         public Category Category { get; set; } = null!;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime PublishedAt { get; set; } = DateTime.UtcNow;
     }
 
     public class BlogSummary
@@ -29,6 +29,6 @@ namespace JassWebApi.Entities
         public string CategoryName { get; set; } = string.Empty;
         public string CategorySlug { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime PublishedAt { get; set; }
     }
 }
