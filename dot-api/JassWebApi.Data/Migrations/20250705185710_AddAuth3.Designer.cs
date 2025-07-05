@@ -3,6 +3,7 @@ using System;
 using JassWebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace JassWebApi.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250705185710_AddAuth3")]
+    partial class AddAuth3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,7 +175,8 @@ namespace JassWebApi.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserSessionId");
+                    b.HasIndex("UserSessionId")
+                        .IsUnique();
 
                     b.ToTable("RefreshTokens");
                 });
@@ -325,8 +329,8 @@ namespace JassWebApi.Data.Migrations
             modelBuilder.Entity("JassWebApi.Entities.RefreshToken", b =>
                 {
                     b.HasOne("JassWebApi.Entities.UserSession", "UserSession")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserSessionId")
+                        .WithOne("RefreshToken")
+                        .HasForeignKey("JassWebApi.Entities.RefreshToken", "UserSessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -367,7 +371,8 @@ namespace JassWebApi.Data.Migrations
 
             modelBuilder.Entity("JassWebApi.Entities.UserSession", b =>
                 {
-                    b.Navigation("RefreshTokens");
+                    b.Navigation("RefreshToken")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

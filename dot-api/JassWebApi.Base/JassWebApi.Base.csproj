@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,6 +23,8 @@
   <ItemGroup>
     <ProjectReference Include="..\JassWebApi.Data\JassWebApi.Data.csproj" />
     <ProjectReference Include="..\JassWebApi.Entities\JassWebApi.Entities.csproj" />
+    <ProjectReference Include="..\JassWebApi.Helpers\JassWebApi.Helpers.csproj" />
+    <ProjectReference Include="..\JassWebApi.Infra\JassWebApi.Infra.csproj" />
   </ItemGroup>
 
 </Project>

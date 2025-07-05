@@ -51,6 +51,6 @@ namespace JassWebApi.Base.Controllers
 
     public class DeleteByVersionRequest
     {
-        public string Version { get; set; }
+        public required string Version { get; set; }
     }
 }

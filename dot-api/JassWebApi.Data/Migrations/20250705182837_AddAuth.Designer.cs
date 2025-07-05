@@ -3,6 +3,7 @@ using System;
 using JassWebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace JassWebApi.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250705182837_AddAuth")]
+    partial class AddAuth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,7 +122,7 @@ namespace JassWebApi.Data.Migrations
                     b.ToTable("ChangeLogs");
                 });
 
-            modelBuilder.Entity("JassWebApi.Entities.PasswordRecovery", b =>
+            modelBuilder.Entity("JassWebApi.Entities.Device", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -128,13 +131,42 @@ namespace JassWebApi.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("ExpiresAt")
+                    b.Property<string>("DeviceId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeviceName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DeviceType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("LastUsedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("boolean");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
 
-                    b.Property<string>("Token")
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("JassWebApi.Entities.LoginProvider", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProviderUserId")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -145,7 +177,7 @@ namespace JassWebApi.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("PasswordRecoveries");
+                    b.ToTable("LoginProviders");
                 });
 
             modelBuilder.Entity("JassWebApi.Entities.RefreshToken", b =>
@@ -157,6 +189,9 @@ namespace JassWebApi.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("DeviceId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("ExpiresAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -167,12 +202,9 @@ namespace JassWebApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserSessionId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserSessionId");
+                    b.HasIndex("DeviceId");
 
                     b.ToTable("RefreshTokens");
                 });
@@ -184,6 +216,7 @@ namespace JassWebApi.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Avatar")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
@@ -197,16 +230,12 @@ namespace JassWebApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("GoogleUserId")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
@@ -222,82 +251,7 @@ namespace JassWebApi.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("GoogleUserId")
-                        .IsUnique();
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("JassWebApi.Entities.UserSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsLoggedIn")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("LastUsedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("SessionId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserAgent")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("ValidUntil")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserSessions");
-                });
-
-            modelBuilder.Entity("JassWebApi.Entities.VerificationToken", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("VerificationTokens");
                 });
 
             modelBuilder.Entity("JassWebApi.Entities.Blog", b =>
@@ -311,10 +265,21 @@ namespace JassWebApi.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("JassWebApi.Entities.PasswordRecovery", b =>
+            modelBuilder.Entity("JassWebApi.Entities.Device", b =>
                 {
                     b.HasOne("JassWebApi.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Devices")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("JassWebApi.Entities.LoginProvider", b =>
+                {
+                    b.HasOne("JassWebApi.Entities.User", "User")
+                        .WithMany("LoginProviders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -324,35 +289,13 @@ namespace JassWebApi.Data.Migrations
 
             modelBuilder.Entity("JassWebApi.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("JassWebApi.Entities.UserSession", "UserSession")
+                    b.HasOne("JassWebApi.Entities.Device", "Device")
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("UserSessionId")
+                        .HasForeignKey("DeviceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("UserSession");
-                });
-
-            modelBuilder.Entity("JassWebApi.Entities.UserSession", b =>
-                {
-                    b.HasOne("JassWebApi.Entities.User", "User")
-                        .WithMany("UserSessions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("JassWebApi.Entities.VerificationToken", b =>
-                {
-                    b.HasOne("JassWebApi.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+                    b.Navigation("Device");
                 });
 
             modelBuilder.Entity("JassWebApi.Entities.Category", b =>
@@ -360,14 +303,16 @@ namespace JassWebApi.Data.Migrations
                     b.Navigation("Blogs");
                 });
 
-            modelBuilder.Entity("JassWebApi.Entities.User", b =>
-                {
-                    b.Navigation("UserSessions");
-                });
-
-            modelBuilder.Entity("JassWebApi.Entities.UserSession", b =>
+            modelBuilder.Entity("JassWebApi.Entities.Device", b =>
                 {
                     b.Navigation("RefreshTokens");
+                });
+
+            modelBuilder.Entity("JassWebApi.Entities.User", b =>
+                {
+                    b.Navigation("Devices");
+
+                    b.Navigation("LoginProviders");
                 });
 #pragma warning restore 612, 618
         }

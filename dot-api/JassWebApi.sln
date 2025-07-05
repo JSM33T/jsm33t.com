@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Entities", "Jass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Data", "JassWebApi.Data\JassWebApi.Data.csproj", "{88545A59-80E2-4779-9977-0EBEB5761267}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Helpers", "JassWebApi.Helpers\JassWebApi.Helpers.csproj", "{15072AA3-A231-4286-BAFC-D571D1FCE1D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JassWebApi.Infra", "JassWebApi.Infra\JassWebApi.Infra.csproj", "{D2544A1F-0CDA-4F70-949C-ABA961E19BED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{88545A59-80E2-4779-9977-0EBEB5761267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88545A59-80E2-4779-9977-0EBEB5761267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88545A59-80E2-4779-9977-0EBEB5761267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15072AA3-A231-4286-BAFC-D571D1FCE1D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15072AA3-A231-4286-BAFC-D571D1FCE1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15072AA3-A231-4286-BAFC-D571D1FCE1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15072AA3-A231-4286-BAFC-D571D1FCE1D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2544A1F-0CDA-4F70-949C-ABA961E19BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2544A1F-0CDA-4F70-949C-ABA961E19BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2544A1F-0CDA-4F70-949C-ABA961E19BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2544A1F-0CDA-4F70-949C-ABA961E19BED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
